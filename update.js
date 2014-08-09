@@ -1,13 +1,14 @@
 var http = require('http');
 var config = require('./config');
+var creds = require('./creds');
 
 var options = {
-  host: 'myanimelist.net',
-  path: '/api/anime/search.xml?q=madoka',
+  host: config.MAL_HOST,
+  path: config.MAL_SEARCH + 'madoka',
   headers: {
-      'user-agent': config.MAL_API_KEY
+      'user-agent': creds.MAL_API_KEY
   },
-  auth: config.MAL_USERNAME + ':' + config.MAL_PASSWORD
+  auth: creds.MAL_USERNAME + ':' + creds.MAL_PASSWORD
 };
 
 http.request(options, function(response) {
