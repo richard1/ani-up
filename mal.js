@@ -1,7 +1,6 @@
-var http = require('http');
 var request = require('request');
 var qs = require('querystring');
-
+var creds = require('./creds');
 var config = require('./config');
 
 function verify(username, password) {
@@ -20,7 +19,7 @@ function sendRequest(path, username, password) {
     request.get({
         uri: "http://" + config.MAL_HOST + path,
         headers: {
-            'user-agent': config.MAL_API_KEY
+            'user-agent': creds.MAL_API_KEY
         },
     }, function(err, res, body) {
         if(err) {
@@ -38,7 +37,7 @@ function updateList(id, episode, username, password) {
     request.post({
         uri: "http://" + config.MAL_HOST + config.MAL_UPDATE + id + ".xml",
         headers: {
-            'user-agent': config.MAL_API_KEY,
+            'user-agent': creds.MAL_API_KEY,
             'content-type': 'application/x-www-form-urlencoded'
         },
         body: qs.stringify(postData)
