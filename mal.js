@@ -15,22 +15,22 @@ function search(query, username, password) {
 /**
  * Sends an HTTP GET request to the given MAL path, authenticating
  * with the given username and password.
- *
- * TODO refactor to use "request"
  */
 function sendRequest(path, username, password) {
-    var options = {
-        host: config.MAL_HOST,
-        path: path,
+    request.get({
+        uri: "http://" + config.MAL_HOST + path,
         headers: {
-            'user-agent': config.MAL_API_KEY,
+            'user-agent': config.MAL_API_KEY
         },
-        auth: username + ':' + password,
-    };
-
-    http.request(options, function(response) {
-        response.pipe(process.stdout);
-    }).end();
+    }, function(err, res, body) {
+        if(err) {
+            console.log("An error occurred while making the request.");
+            console.log(err + ", " + res.statusCode);
+        }
+        else {
+            console.log(body);
+        }
+    }).auth(username, password, false);
 };
 
 function updateList(id, episode, username, password) {
@@ -38,6 +38,7 @@ function updateList(id, episode, username, password) {
     request.post({
         uri: "http://" + config.MAL_HOST + config.MAL_UPDATE + id + ".xml",
         headers: {
+            'user-agent': config.MAL_API_KEY,
             'content-type': 'application/x-www-form-urlencoded'
         },
         body: qs.stringify(postData)
