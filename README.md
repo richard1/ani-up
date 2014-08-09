@@ -28,4 +28,4 @@ module.exports = creds;
 
 ## Running the demo
 
-`node mal.js`
+`node demo.js`

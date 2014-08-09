@@ -3,7 +3,6 @@ var request = require('request');
 var qs = require('querystring');
 
 var config = require('./config');
-var creds = require('./creds');
 
 function verify(username, password) {
     sendRequest(config.MAL_VERIFY, username, password);
@@ -57,5 +56,6 @@ function buildAnimeValuesXml(episode) {
         episode + '</episode></entry>';
 }
 
-search('barakamon', creds.MAL_USERNAME, creds.MAL_PASSWORD);    // y'all need to watch this
-updateList(22, 0, creds.MAL_USERNAME, creds.MAL_PASSWORD);
+exports.verify = verify;
+exports.search = search;
+exports.updateList = updateList;
