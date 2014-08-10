@@ -9,7 +9,7 @@ var config = require('./config');
  *
  * id: anime ID or slug (e.g. 'steins-gate' or 5646)
  */
-function search(id) {
+function search(id, callback) {
     request.get({
         uri: "https://" + config.HUMMINGBIRD_HOST_V2 + 
              config.HUMMINGBIRD_SEARCH + id,
@@ -19,10 +19,11 @@ function search(id) {
         },
     }, function(err, res, body) {
         if(err) {
-            console.log("Error: " + err);
+            callback("Request error: " + err + ", " + res.statusCode);
         }
         else {
-            console.log(JSON.parse(body));
+            exports.results = JSON.parse(body);
+            callback();
         }
     });
 };
@@ -31,7 +32,7 @@ function search(id) {
  * Gets the user's authentication token. using the password
  * and either the username or email.
  */
-function authenticate(emailOrUsername, password) {
+function authenticate(emailOrUsername, password, callback) {
     var postData = {
         'password': password
     };
@@ -53,13 +54,14 @@ function authenticate(emailOrUsername, password) {
         body: qs.stringify(postData)
     }, function(err, res, body) {
         if(err) {
-            console.log("An error occurred while making the request: " + res.statusCode);
+            callback("Request error: " + err + ", " + res.statusCode);
         }
         else if(JSON.parse(body).error) {
-            console.log("Authentication error: " + JSON.parse(body).error);
+            callback("Authentication error: " + JSON.parse(body).error);
         }
         else {
-            console.log(body);
+            exports.authToken = body;
+            callback();
         }
     });
 }
