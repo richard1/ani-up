@@ -64,10 +64,40 @@ function authenticate(emailOrUsername, password, callback) {
             callback("Authentication error: " + JSON.parse(body).error, body);
         }
         else {
+            callback(null, body.slice(1, -1));
+        }
+    });
+};
+
+function update(token, id, episode, callback) {
+    var postData = {
+        'episodes_watched': episode,
+        'auth_token': token,
+        'status': 'currently-watching'
+    }
+    request.post({
+        uri: "https://" + config.HUMMINGBIRD_HOST_V1 + 
+             config.HUMMINGBIRD_UPDATE + id,
+        headers: {
+            'X-Mashape-Key': creds.HUMMINGBIRD_API_KEY,
+            'Content-Type': "application/x-www-form-urlencoded"
+        },
+        body: qs.stringify(postData)
+    }, function(err, res, body) {
+        if(err) {
+            callback("Request error: " + err + ", " + res.statusCode, body);
+        }
+        else if(JSON.parse(body).error) {
+            callback("Error: " + JSON.parse(body), body);
+        }
+        else {
             callback(null, body);
         }
     });
-}
+};
+
+        
 
 exports.search = search;
 exports.authenticate = authenticate;
+exports.update = update;

@@ -32,7 +32,7 @@ function sendRequest(path, username, password, callback) {
     }).auth(username, password, false);
 };
 
-function updateList(id, episode, username, password, callback) {
+function update(id, episode, username, password, callback) {
     var postData = { data: buildAnimeValuesXml(episode) };
     request.post({
         uri: "http://" + config.MAL_HOST + config.MAL_UPDATE + id + ".xml",
@@ -58,4 +58,4 @@ function buildAnimeValuesXml(episode) {
 
 exports.verify = verify;
 exports.search = search;
-exports.updateList = updateList;
+exports.update = update;
