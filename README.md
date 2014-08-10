@@ -1,8 +1,6 @@
 ani-up
 ======
 
-[![Build Status](https://travis-ci.org/richard1/ani-up.svg?branch=master)](https://travis-ci.org/richard1/ani-up)
-
 ANI UP _(become meguca!)_
 
 ## Dependencies
