@@ -7,7 +7,8 @@ var config = require('./config');
 /**
  * Retrieves information about an anime as a JSON object.
  *
- * id: anime ID or slug (e.g. 'steins-gate' or 5646)
+ * id:          anime ID or slug (e.g. 'steins-gate' or 5646)
+ * callback:    takes the error, and data
  */
 function search(id, callback) {
     request.get({
@@ -19,11 +20,10 @@ function search(id, callback) {
         },
     }, function(err, res, body) {
         if(err) {
-            callback("Request error: " + err + ", " + res.statusCode);
+            callback("Request error: " + err + ", " + res.statusCode, body);
         }
         else {
-            exports.results = JSON.parse(body);
-            callback();
+            callback(null, JSON.parse(body));
         }
     });
 };
@@ -31,6 +31,10 @@ function search(id, callback) {
 /**
  * Gets the user's authentication token. using the password
  * and either the username or email.
+ *
+ * emailOrUsername:     user's email or username
+ * password:            user's password
+ * callback:            takes the error, and data
  */
 function authenticate(emailOrUsername, password, callback) {
     var postData = {
@@ -54,14 +58,13 @@ function authenticate(emailOrUsername, password, callback) {
         body: qs.stringify(postData)
     }, function(err, res, body) {
         if(err) {
-            callback("Request error: " + err + ", " + res.statusCode);
+            callback("Request error: " + err + ", " + res.statusCode, body);
         }
         else if(JSON.parse(body).error) {
-            callback("Authentication error: " + JSON.parse(body).error);
+            callback("Authentication error: " + JSON.parse(body).error, body);
         }
         else {
-            exports.authToken = body;
-            callback();
+            callback(null, body);
         }
     });
 }
