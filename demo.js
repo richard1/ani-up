@@ -4,10 +4,40 @@ var creds = require('./creds');
 
 
 /* MAL search demo */
-//mal.search('barakamon', creds.MAL_USERNAME, creds.MAL_PASSWORD);
+mal.search('barakamon', creds.MAL_USERNAME, 
+    creds.MAL_PASSWORD, function(err, results) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            console.log(results);
+        }
+    }
+);
 
-/* MAL update demo */
-//mal.updateList(22, 0, creds.MAL_USERNAME, creds.MAL_PASSWORD);
+/* MAL verify demo */
+mal.verify(creds.MAL_USERNAME, creds.MAL_PASSWORD,
+    function(err, result) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            console.log(result);
+        }
+    }
+);
+
+/* MAL update demo (Prince of Tennis) */
+mal.updateList(22, 0, creds.MAL_USERNAME, 
+    creds.MAL_PASSWORD, function(err, result) {
+        if(err) {
+            console.log(err);
+        }
+        else {
+            console.log("List successfully updated!");
+        }
+    }
+);
 
 /* Hummingbird search demo */
 hummingbird.search('barakamon', function(err, results) {

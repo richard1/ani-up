@@ -4,19 +4,19 @@ var qs = require('querystring');
 var creds = require('./creds');
 var config = require('./config');
 
-function verify(username, password) {
-    sendRequest(config.MAL_VERIFY, username, password);
+function verify(username, password, callback) {
+    sendRequest(config.MAL_VERIFY, username, password, callback);
 }
 
-function search(query, username, password) {
-    sendRequest(config.MAL_SEARCH + query, username, password);
+function search(query, username, password, callback) {
+    sendRequest(config.MAL_SEARCH + query, username, password, callback);
 }
 
 /**
  * Sends an HTTP GET request to the given MAL path, authenticating
  * with the given username and password.
  */
-function sendRequest(path, username, password) {
+function sendRequest(path, username, password, callback) {
     request.get({
         uri: "http://" + config.MAL_HOST + path,
         headers: {
@@ -24,16 +24,15 @@ function sendRequest(path, username, password) {
         },
     }, function(err, res, body) {
         if(err) {
-            console.log("An error occurred while making the request.");
-            console.log(err + ", " + res.statusCode);
+            callback("Request error: " + err + ", " + res.statusCode, body);
         }
         else {
-            console.log(body);
+            callback(null, body);
         }
     }).auth(username, password, false);
 };
 
-function updateList(id, episode, username, password) {
+function updateList(id, episode, username, password, callback) {
     var postData = { data: buildAnimeValuesXml(episode) };
     request.post({
         uri: "http://" + config.MAL_HOST + config.MAL_UPDATE + id + ".xml",
@@ -44,10 +43,10 @@ function updateList(id, episode, username, password) {
         body: qs.stringify(postData)
     }, function(err, res, body){
         if(err || res.statusCode != 200 || body != "Updated") {
-            console.log("An error occurred while updating your list.");
+            callback("Update error: " + err + ", " + res.statusCode, body);
         }
         else {
-            console.log("List successfully updated!");
+            callback(null, body);
         }
     }).auth(username, password, false);
 }
