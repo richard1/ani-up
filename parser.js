@@ -1,5 +1,3 @@
-var hummingbird = require('./hummingbird');
-
 function cleanFilename(name) {
     name = name.trim();
 
@@ -69,7 +67,7 @@ function querify(name) {
     return result.replace(/[\s]+/g, '+');
 }
 
-
+/*
 var fs = require('fs'),
         readline = require('readline');
 
@@ -79,21 +77,15 @@ var rd = readline.createInterface({
         terminal: false
 });
 
-var totalErrors = 0;
-var totalTests = 0;
-
 rd.on('line', function(line) {
-    /*if(line.indexOf("/") == -1) {
+    if(line.indexOf("/") == -1) {
         var cleaned = cleanFilename(line);
         console.log("Raw:     \t" + line);
         console.log("Cleaned: \t" + cleaned);
         console.log("Title:   \t" + getTitle(cleaned));
         console.log("Episode: \t" + +getEpisodeNumber(cleaned));
         return;
-    }*/
-
-    //var errors = 0;
-    //totalTests += 2;
+    }
 
     var entries = line.split("/");
     var raw = entries[0];
@@ -103,8 +95,7 @@ rd.on('line', function(line) {
     var cleaned = cleanFilename(raw);
     var actualTitle = getTitle(cleaned);
     var actualEp = +getEpisodeNumber(cleaned);
-console.log(raw);
-return;
+
     hummingbird.searchTopResult(actualTitle, function(err, result) {
         if(err) {
             console.log(err);
@@ -122,28 +113,4 @@ return;
             console.log();
         }
     });
-    
-    /*if(expectedTitle !== actualTitle) {
-        errors++;
-        console.log("\nTITLE NOT CORRECT");
-        console.log("Expected: \t" + expectedTitle);
-        console.log("Actual:   \t" + actualTitle);
-        console.log();
-    }
-    if(expectedEp !== actualEp) {
-        errors++;
-        console.log("\nEPISODE NOT CORRECT");
-        console.log("Expected: \t" + expectedEp);
-        console.log("Actual:   \t" + actualEp);
-        console.log();
-    }
-    
-    errors = 2 - errors;
-    if(errors != 0) {
-        totalErrors += errors;
-        console.log("("+totalErrors+"/"+totalTests+")");
-    }
-    else {
-        console.log("("+totalErrors+"/"+totalTests+")");
-    }*/
-});
+});*/
