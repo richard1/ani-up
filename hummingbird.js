@@ -7,23 +7,34 @@ var config = require('./config');
 /**
  * Retrieves information about an anime as a JSON object.
  *
- * id:          anime ID or slug (e.g. 'steins-gate' or 5646)
+ * query:       string to search
  * callback:    takes the error, and data
  */
-function search(id, callback) {
+function search(query, callback) {
     request.get({
-        uri: "https://" + config.HUMMINGBIRD_HOST_V2 + 
-             config.HUMMINGBIRD_SEARCH + id,
+        uri: "https://" + config.HUMMINGBIRD_HOST_V1 + 
+             config.HUMMINGBIRD_SEARCH + "?query=" + query,
         headers: {
             'X-Mashape-Key': creds.HUMMINGBIRD_API_KEY,
             'Content-Type': "application/x-www-form-urlencoded"
-        },
+        }
     }, function(err, res, body) {
         if(err) {
             callback("Request error: " + err + ", " + res.statusCode, body);
         }
         else {
             callback(null, JSON.parse(body));
+        }
+    });
+};
+
+function searchTopResult(query, callback) {
+    search(query, function(err, result) {
+        if(err) {
+            callback(err);
+        }
+        else {
+            callback(null, result[0]);
         }
     });
 };
@@ -99,5 +110,6 @@ function update(token, id, episode, callback) {
         
 
 exports.search = search;
+exports.searchTopResult = searchTopResult;
 exports.authenticate = authenticate;
 exports.update = update;
