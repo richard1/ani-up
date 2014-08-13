@@ -1,6 +1,7 @@
 var assert = require("assert");
 
-var parser = require('../parser')
+var aniup = require('../');
+var parser = aniup.parser;
 
 var fileNames = [
     '[UTW] Fate Stay Night - Unlimited Blade Works [BD][h264-1080p FLAC][D7A47961].mkv', 
