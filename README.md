@@ -5,7 +5,12 @@ ANI UP _(become meguca!)_
 
 ## Dependencies
 
-* [request](https://github.com/mikeal/request) - _Simplified HTTP request client_
+* [request](https://github.com/mikeal/request) - _simplified HTTP request client_
+* [node-xml2js](https://github.com/Leonidas-from-XIV/node-xml2js) - _XML to JavaScript object converter_ (soon)
+
+#### For contributors to ani-up
+
+* [mocha](https://github.com/visionmedia/mocha) - _simple, flexible, fun javascript test framework for node.js & the browser_
 
 ### Installing dependencies
 
@@ -32,6 +37,18 @@ creds.HUMMINGBIRD_PASSWORD = "your password here"
 module.exports = creds;
 ```
 
-## Running the demo
+## Running the demos
 
-`node demo.js`
+```
+node example/mal-demo.js [optional search query]
+
+node example/hummingbird-demo.js [optional search query]
+```
+
+## Running the tests
+
+_Note: requires the **mocha** node module to run._
+
+```
+npm test
+```
