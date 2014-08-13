@@ -2,6 +2,7 @@ ani-up
 ======
 
 [![Build Status](https://travis-ci.org/richard1/ani-up.svg?branch=master)](https://travis-ci.org/richard1/ani-up)
+[![NPM version](https://badge.fury.io/js/ani-up.svg)](http://badge.fury.io/js/ani-up)
 
 ANI UP _(become meguca!)_
 
