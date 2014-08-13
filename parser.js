@@ -67,50 +67,7 @@ function querify(name) {
     return result.replace(/[\s]+/g, '+');
 }
 
-/*
-var fs = require('fs'),
-        readline = require('readline');
-
-var rd = readline.createInterface({
-        input: fs.createReadStream('filenames'),
-        output: process.stdout,
-        terminal: false
-});
-
-rd.on('line', function(line) {
-    if(line.indexOf("/") == -1) {
-        var cleaned = cleanFilename(line);
-        console.log("Raw:     \t" + line);
-        console.log("Cleaned: \t" + cleaned);
-        console.log("Title:   \t" + getTitle(cleaned));
-        console.log("Episode: \t" + +getEpisodeNumber(cleaned));
-        return;
-    }
-
-    var entries = line.split("/");
-    var raw = entries[0];
-    var expectedTitle = entries[1];
-    var expectedEp = +entries[2];
-    
-    var cleaned = cleanFilename(raw);
-    var actualTitle = getTitle(cleaned);
-    var actualEp = +getEpisodeNumber(cleaned);
-
-    hummingbird.searchTopResult(actualTitle, function(err, result) {
-        if(err) {
-            console.log(err);
-        }
-        else {
-            console.log("Raw:     \t" + raw);
-            console.log("\nGUESS OF SHOW");
-            console.log("Query:   \t" + querify(actualTitle));
-
-            console.log("Title: \t" + result.title);
-            console.log("ID:    \t" + result.id);
-            console.log("Eps:   \t" + result.episode_count);
-            console.log("URL:   \t" + result.url);
-            console.log("Image: \t" + result.cover_image);
-            console.log();
-        }
-    });
-});*/
+exports.cleanFilename = cleanFilename;
+exports.getEpisodeNumber = getEpisodeNumber;
+exports.getTitle = getTitle;
+exports.querify = querify;
