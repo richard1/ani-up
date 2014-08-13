@@ -2,7 +2,7 @@
   "name": "ani-up",
   "version": "0.0.0",
   "description": "Wrapper for MyAnimeList and Hummingbird APIs in Node.js",
-  "main": "mal.js",
+  "main": "index.js",
   "directories": {
     "test": "test"
   },
