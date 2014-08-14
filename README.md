@@ -12,7 +12,11 @@ To install, run `npm install ani-up` in your project's home directory.  If you n
 
 ## Usage
 
-Check out the [documentation](https://github.com/richard1/ani-up/wiki/Documentation) for detailed information on using ani-up.
+***
+
+#### [Check out the documentation](https://github.com/richard1/ani-up/wiki/Documentation) for detailed information on using ani-up.
+
+***
 
 ### MyAnimeList & Hummingbird
 
