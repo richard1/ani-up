@@ -65,14 +65,14 @@ hummingbird.searchTopResult('barakamon', function(err, result) {
 
 Parser is a standalone video file name parser that is bundled with this module.  If you only need to use the parser (and neither the MAL nor Hummingbird functions), then you do not need to have a `creds.js` file.
 
-```
+```JavaScript
 require('aniup').parser;       // the proper way
 require('aniup/lib/parser');   // only if you don't have/need creds.js
 ```
 
 ## Running the demos
 
-This Node.js moduel contains some basic demos in the examples/ directory.  To run them, run these commands from the ani-up directory.
+This Node.js module contains some basic demos in the examples/ directory.  To run them, run these commands from the ani-up directory.
 
 ```
 node example/mal-demo.js [optional search query]
