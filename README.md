@@ -41,7 +41,7 @@ module.exports = creds;
 
 With that, you can start calling the MAL and Hummingbird functions in your application.  To obtain the MAL and Hummingbird submodules, you simply `require` them like so:
 
-```
+```JavaScript
 var aniup = require('ani-up');        // the entire module
 var mal = aniup.mal;                  // the MAL module
 var hummingbird = aniup.hummingbird;  // the hummingbird module
