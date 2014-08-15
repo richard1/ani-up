@@ -12,7 +12,14 @@ function search(callback) {
             console.log(err);
         }
         else {
-            console.log(results);
+            if(results) {
+                for(var i = 0; i < results.length; i++) {
+                    console.log(results[i]);
+                }
+            }
+            else {
+                console.log("No results were found.");
+            }
         }
         callback();
     });
@@ -25,19 +32,22 @@ function verify(callback) {
             console.log(err);
         }
         else {
-            console.log(result);
+            console.log("Successfully authenticated!");
+            console.log("Username: \t" + result.username);
+            console.log("MAL ID:   \t" + result.id);
         }
         callback();
     });
 };
 
 function update(callback) {
-    mal.update(22, 0, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
+    mal.update(22, 1, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
                function(err, result) {
         if(err) {
             console.log(err);
         }
         else {
+            // if success, the result is just literally 'Updated'
             console.log("List successfully updated!");
         }
         callback();
@@ -50,7 +60,7 @@ search(function() {
     verify(function() {
         console.log("\n////////// MYANIMELIST UPDATE\n");
         update(function() {
-            console.log("\n////////// END OF DEMO\n");
+            console.log("\n");
         });
     });
 });

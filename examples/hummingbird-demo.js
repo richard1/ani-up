@@ -18,6 +18,9 @@ function search(callback) {
                 console.log("URL:   \t" + result.url);
                 console.log("Image: \t" + result.cover_image);
             }
+            else {
+                console.log("No results found.");
+            }
         }
         callback();
     });
@@ -51,6 +54,6 @@ console.log("\n////////// HUMMINGBIRD SEARCH\n");
 search(function() {
     console.log("\n////////// HUMMINGBIRD AUTH & UPDATE\n"); 
     update(function() {
-        console.log("\n////////// END OF DEMO\n");
+        console.log("\n");
     });
 });
