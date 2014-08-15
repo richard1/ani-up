@@ -38,15 +38,15 @@ function update(callback) {
                 if(err) {
                     console.log(err);
                 }
-                else if(data == "false") {
+                else if(data === 'false') {
                     console.log("Unknown error");
                 }
                 else {
                     console.log(JSON.parse(data));
                 }
-                callback();
             });
         }
+        callback();
     });
 };
 
