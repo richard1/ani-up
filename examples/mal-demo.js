@@ -4,6 +4,8 @@ var mal = aniup.mal;
 var creds = require('../creds');
 
 var query = process.argv[2] ? process.argv[2] : 'barakamon';
+var id    = process.argv[3] ? process.argv[3] : 22;
+var ep    = process.argv[4] ? process.argv[4] : 0;
 
 function search(callback) {
     mal.search(query, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
@@ -43,7 +45,7 @@ function verify(callback) {
 };
 
 function updateList(callback) {
-    mal.add(22, 178, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
+    mal.add(+id, +ep, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
                function(err, result) {
         if(err) {
             console.log(err);
