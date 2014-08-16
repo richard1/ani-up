@@ -12,7 +12,7 @@ function search(callback) {
                function(err, results) {
         if(err) {
             console.log(err);
-            console.log("Response: " + result);
+            console.log("Response: " + results);
         }
         else {
             if(results) {
