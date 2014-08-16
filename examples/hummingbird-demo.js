@@ -27,7 +27,7 @@ function search(callback) {
 };
 
 function update(callback) {
-    hummingbird.authenticate(creds.HUMMINGBIRD_EMAIL, creds.HUMMINGBIRD_PASSWORD, 
+    hummingbird.authenticate(creds.HUMMINGBIRD_USERNAME, creds.HUMMINGBIRD_PASSWORD, 
                              function(err, token) {
         if(err) {
             console.log(err);

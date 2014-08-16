@@ -10,6 +10,7 @@ function search(callback) {
                function(err, results) {
         if(err) {
             console.log(err);
+            console.log("Response: " + result);
         }
         else {
             if(results) {
@@ -30,6 +31,7 @@ function verify(callback) {
                function(err, result) {
         if(err) {
             console.log(err);
+            console.log("Response: " + result);
         }
         else {
             console.log("Successfully authenticated!");
@@ -40,15 +42,18 @@ function verify(callback) {
     });
 };
 
-function update(callback) {
-    mal.update(22, 1, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
+function updateList(callback) {
+    mal.add(22, 69, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
                function(err, result) {
         if(err) {
             console.log(err);
+            console.log("Response: " + result);
         }
         else {
             // if success, the result is just literally 'Updated'
             console.log("List successfully updated!");
+            console.log("Show ID: \t" + result.id);
+            console.log("Episode: \t" + result.episode);
         }
         callback();
     });
@@ -59,7 +64,7 @@ search(function() {
     console.log("\n////////// MYANIMELIST VERIFY\n");
     verify(function() {
         console.log("\n////////// MYANIMELIST UPDATE\n");
-        update(function() {
+        updateList(function() {
             console.log("\n");
         });
     });
