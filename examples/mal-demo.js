@@ -43,7 +43,7 @@ function verify(callback) {
 };
 
 function updateList(callback) {
-    mal.add(22, 69, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
+    mal.add(22, 178, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
                function(err, result) {
         if(err) {
             console.log(err);
@@ -54,6 +54,7 @@ function updateList(callback) {
             console.log("List successfully updated!");
             console.log("Show ID: \t" + result.id);
             console.log("Episode: \t" + result.episode);
+            console.log("Status:  \t" + result.status);
         }
         callback();
     });
