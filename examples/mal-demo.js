@@ -12,7 +12,6 @@ function search(callback) {
                function(err, result) {
         if(err) {
             console.log(err);
-            console.log("Response: " + result);
         }
         else {
             if(result) {
@@ -31,7 +30,6 @@ function verify(callback) {
                function(err, result) {
         if(err) {
             console.log(err);
-            console.log("Response: " + result);
         }
         else {
             console.log("Successfully authenticated!");
@@ -47,7 +45,6 @@ function updateList(callback) {
                function(err, result) {
         if(err) {
             console.log(err);
-            console.log("Response: " + result);
         }
         else {
             // if success, the result is just literally 'Updated'
@@ -55,7 +52,6 @@ function updateList(callback) {
             console.log("Show ID: \t" + result.id);
             console.log("Episode: \t" + result.episode);
             console.log("Status:  \t" + result.status);
-            console.log("Response:\t" + result.body);
         }
         callback();
     });
