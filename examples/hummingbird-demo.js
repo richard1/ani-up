@@ -4,6 +4,8 @@ var hummingbird = aniup.hummingbird;
 var creds = require('../creds');
 
 var query = process.argv[2] ? process.argv[2] : 'barakamon';
+var id    = process.argv[3] ? process.argv[3] : 'prince-of-tennis';
+var ep    = process.argv[4] ? process.argv[4] : 1;
 
 function search(callback) {
     hummingbird.searchTopResult(query, function(err, result) {
@@ -19,7 +21,7 @@ function search(callback) {
                 console.log("Image: \t" + result.cover_image);
             }
             else {
-                console.log("No results found.");
+                console.log("No results were found.");
             }
         }
         callback();
@@ -33,7 +35,7 @@ function update(callback) {
             console.log(err);
         }
         else {
-            hummingbird.update(token, 'prince-of-tennis', 1,
+            hummingbird.update(token, id, ep,
                                    function(err, data) {
                 if(err) {
                     console.log(err);

@@ -8,17 +8,15 @@ var id    = process.argv[3] ? process.argv[3] : 22;
 var ep    = process.argv[4] ? process.argv[4] : 0;
 
 function search(callback) {
-    mal.search(query, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
-               function(err, results) {
+    mal.searchTopResult(query, creds.MAL_USERNAME, creds.MAL_PASSWORD, 
+               function(err, result) {
         if(err) {
             console.log(err);
-            console.log("Response: " + results);
+            console.log("Response: " + result);
         }
         else {
-            if(results) {
-                for(var i = 0; i < results.length; i++) {
-                    console.log(results[i]);
-                }
+            if(result) {
+                console.log(result);
             }
             else {
                 console.log("No results were found.");
@@ -57,6 +55,7 @@ function updateList(callback) {
             console.log("Show ID: \t" + result.id);
             console.log("Episode: \t" + result.episode);
             console.log("Status:  \t" + result.status);
+            console.log("Response:\t" + result.body);
         }
         callback();
     });
