@@ -8,7 +8,7 @@ var id    = process.argv[3] ? process.argv[3] : 'prince-of-tennis';
 var ep    = process.argv[4] ? process.argv[4] : 1;
 
 function search(callback) {
-    hummingbird.searchTopResult(query, function(err, result) {
+    hummingbird.searchTopResultBySimilarity(query, function(err, result) {
         if(err) {
             console.log(err);
         }
